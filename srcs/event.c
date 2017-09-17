@@ -41,11 +41,12 @@ void ft_rand(t_gen *g)
 
 	i = 0;
 	srand(time(NULL));
+	g->map[g->clic_x][g->clic_y] = 'L'; // mettre 'L' en haut et en bas et en diagonal pour le 1er clic
 	while(i < bmb)
 	{
 		x = rand()% g->x +0;
 		y = rand()% g->x +0;
-		if(g->map_min[x][y] == 'X' || (g->clic_x == x && g->clic_y == y))
+		if(g->map_min[x][y] == 'X' || g->map_min[x][y] == 'L')
 			continue ;
 		g->map_min[x][y] = 'X';
 		i++;
@@ -64,7 +65,7 @@ void ft_revel(t_gen *g)
 		ft_putstr("game_over\n");
 		exit(0);
 	}
-	g->map[g->clic_x][g->clic_y] = '0';
+	g->map[g->clic_x][g->clic_y] = '0';  //ne pas oubliet de check les L
 
 	first = 1;
 }
