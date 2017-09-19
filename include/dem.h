@@ -13,6 +13,7 @@ typedef	struct		s_gen
 {
 	char **map;
 	char **map_min;
+	char **map_0;
 	void			*win;
 	void			*mlx;
 	void			*img;
