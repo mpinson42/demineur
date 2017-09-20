@@ -14,6 +14,7 @@ typedef	struct		s_gen
 	char **map;
 	char **map_min;
 	char **map_0;
+	char **clic;
 	void			*win;
 	void			*mlx;
 	void			*img;
@@ -25,6 +26,8 @@ typedef	struct		s_gen
 	int				green;
 	int 			clic_x;
 	int 			clic_y;
+	int 			clic_x_f;
+	int 			clic_y_f;
 	char *img_ptr;
 	int x;
 	int y;

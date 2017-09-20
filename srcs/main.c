@@ -29,10 +29,11 @@ int ft_init(t_gen *g, char **argv)
 	int y;
 
 
-	g->x = 10; //nb case
+	g->x = 20; //nb case
 	g->map = (char **)malloc(sizeof(char *) * (g->x + 1));
 	g->map_min = (char **)malloc(sizeof(char *) * (g->x + 1));
 	g->map_0 = (char **)malloc(sizeof(char *) * (g->x + 1));
+	g->clic = (char **)malloc(sizeof(char *) * (g->x + 1));
 	
 	if(g->x < 10)
 		return(-1);
@@ -43,11 +44,13 @@ int ft_init(t_gen *g, char **argv)
 		g->map_min[x] = (char *)malloc(sizeof(char) * (g->x + 1));
 		g->map[x] = (char *)malloc(sizeof(char) * (g->x + 1));
 		g->map_0[x] = (char *)malloc(sizeof(char) * (g->x + 1));
+		g->clic[x] = (char *)malloc(sizeof(char) * (g->x + 1));
 		while(y < g->x)
 		{
 			g->map_min[x][y] = '.';
 			g->map[x][y] = '*';
 			g->map_0[x][y] = '1';
+			g->clic[x][y] = '0';
 			y++;
 		}
 		g->map_min[x][y] = 0;
