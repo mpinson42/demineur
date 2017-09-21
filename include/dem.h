@@ -15,6 +15,11 @@ typedef	struct		s_gen
 	char **map_min;
 	char **map_0;
 	char **clic;
+	char **drap;
+	char **argv;
+	int	argc;
+	int bmb;
+	int perdu;
 	void			*win;
 	void			*mlx;
 	void			*img;

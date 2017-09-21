@@ -27,18 +27,32 @@ void ft_chr_clic(int x, int y, t_gen *g)
 	printf("x = %d y = %d\n", g->clic_x, g->clic_y);
 }
 
-void ft_drap() // dessin un drapequ a la case
+void ft_drap(t_gen *g) // dessin un drapequ a la case
 {
+	if(g->drap[g->clic_x][g->clic_y] == '!')
+		g->drap[g->clic_x][g->clic_y] = '.';
+	else if(g->drap[g->clic_x][g->clic_y] == '.')
+		g->drap[g->clic_x][g->clic_y] = '!';
+	ft_print_map(g, g->drap);
 }
 
 void ft_rand(t_gen *g)
 {
-	int bmb = 99; //nb bombe
+	int bmb = 10; //nb bombe
 	int x;
 	int y;
 	int i;
 
 	i = 0;
+
+	if(g->argc >= 3)
+	{
+		bmb = ft_atoi(g->argv[2]);
+	}
+	if(bmb < 10 || bmb > g->x * g->x - 9)
+		bmb = 10;
+
+	g->bmb = bmb;
 	srand(time(NULL));
 	g->map[g->clic_x][g->clic_y] = 'L'; // mettre 'L' en haut et en bas et en diagonal pour le 1er clic
 	if(g->clic_x > 0)
@@ -525,6 +539,27 @@ void ft_zero(t_gen *g)
 	}
 }
 
+int ft_win(t_gen *g)
+{
+	int x;
+	int y;
+	int cnt;
+
+	x = 0;
+	while(x < g->x)
+	{
+		y = 0;
+		while(y < g->x)
+		{
+			if(g->map[x][y] == '*' && g->map_min[x][y] == 'X')
+				return (0);
+			y++;
+		}
+		x++;
+	}
+	return (1);
+}
+
 void ft_revel(t_gen *g)
 {
 	static int  first = 0;
@@ -535,10 +570,13 @@ void ft_revel(t_gen *g)
 		g->clic_y_f = g->clic_y;
 		g->clic_x_f = g->clic_x;
 	}
+	if(g->perdu >= 1)
+		exit(0);
 	if(g->map_min[g->clic_x][g->clic_y] == 'X')
 	{
 		ft_putstr("game_over\n");
-		exit(0);
+		g->perdu++;
+		return;
 	}
 	g->map[g->clic_x][g->clic_y] = 'L';
 	if(ft_count_bmb(g, g->clic_x, g->clic_y) == 0)
@@ -548,7 +586,12 @@ void ft_revel(t_gen *g)
 	ft_filtre(g);
 	ft_zero(g);
 
-
+	/*if(ft_win(g) == 0)
+	{
+		g->perdu++;
+		ft_putstr("GG");
+		
+	}*/
 	//vire ceu qui ne sont pas 'clique' || pas conecter au 0
 
 
@@ -566,10 +609,10 @@ int ft_mouse(int button, int x,int y, t_gen *g)
 	if(ft_isalnum(g->map[g->clic_x][g->clic_y]))
 		return(0);
 	printf("%d\n", button);
-	if(button == 1)
+	if(button == 1 && g->drap[g->clic_x][g->clic_y] != '!')
 		ft_revel(g);
-	if(button == 2)
-		ft_drap();
+	if(button == 2 && g->map[g->clic_x][g->clic_y] == '*')
+		ft_drap(g);
 	ft_draw_map(g);
 	return(0);
 }
