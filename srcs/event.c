@@ -3,6 +3,7 @@
 int		red_cross(t_gen *g)
 {
 	(void)g;
+	system("killall afplay");
 	exit(0);
 	return (0);
 }
@@ -571,9 +572,13 @@ void ft_revel(t_gen *g)
 		g->clic_x_f = g->clic_x;
 	}
 	if(g->perdu >= 1)
+	{
+		system("killall afplay");
 		exit(0);
+	}
 	if(g->map_min[g->clic_x][g->clic_y] == 'X')
 	{
+		system("afplay musique/destruction.mp3 &");
 		ft_putstr("game_over\n");
 		g->perdu++;
 		return;
@@ -620,6 +625,9 @@ int ft_mouse(int button, int x,int y, t_gen *g)
 int		key_pressed(int kc, t_gen *g)
 {
 	if(kc == 53)
+	{
+		system("killall afplay");
 		exit(0);
+	}
 	return(0);
 }

@@ -211,7 +211,7 @@ int main(int argc, char **argv)
 	ft_print_map(&g, g.map);
 	g.argv = argv;
 	g.argc = argc;
-
+	system("afplay musique/sao.mp3 &");
 	if (!(g.mlx = mlx_init()))
 		return (-1);
 	if (!(g.img = mlx_new_image(g.mlx, W, H)))
