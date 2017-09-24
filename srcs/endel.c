@@ -33,7 +33,13 @@ void	ft_revel2(t_gen *g, int first)
 		system("killall afplay");
 		exit(0);
 	}
-	if (g->map_min[g->clic_x][g->clic_y] == 'X')
+	if (ft_win_2(g))
+	{
+		ft_putstr("GG\n");
+		g->perdu++;
+		return ;
+	}
+	if (g->map_min[g->clic_x][g->clic_y] == 'X' || ft_win_2(g))
 	{
 		g->map[g->clic_x][g->clic_y] = '\n';
 		system("afplay musique/destruction.mp3 &");

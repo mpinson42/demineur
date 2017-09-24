@@ -13,8 +13,8 @@ all: $(NAME)
 
 $(NAME): $(SRC)
 	@echo "mpinson" > auteur
-	@make -C ./libft all
-	@make -C ./minilibx_macos all
+	make -C ./libft all
+	make -C ./minilibx_macos all
 	@cp ./minilibx_macos/libmlx.a ./lib
 	@cp ./libft/libft.a ./lib
 	@gcc   -I ./include/  -L./lib  -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(SRC)
@@ -23,12 +23,12 @@ $(NAME): $(SRC)
 
 clean:
 	@/bin/rm -f $(SRC2)
-	@make -C ./libft clean
-	@make -C ./minilibx_macos clean
+	make -C ./libft clean
+	make -C ./minilibx_macos clean
 	@afplay musique/destruction.mp3 &
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@make -C ./libft fclean
+	make -C ./libft fclean
 
 re: fclean all

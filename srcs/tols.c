@@ -82,3 +82,23 @@ char	**ft_edit_tab(int i, t_gen *g)
 	tab[x] = NULL;
 	return (tab);
 }
+
+int		ft_win_2(t_gen *g)
+{
+	int x;
+	int y;
+
+	x = 0;
+	while (x < g->x)
+	{
+		y = 0;
+		while (y < g->x)
+		{
+			if (g->map[x][y] == '*' && g->map_min[x][y] != 'X')
+				return (0);
+			y++;
+		}
+		x++;
+	}
+	return (1);
+}

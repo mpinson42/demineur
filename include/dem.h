@@ -70,4 +70,5 @@ void				ft_chr_bmb(t_gen *g);
 void				ft_chr_walcard(t_gen *g, int x, int y, int *s);
 char				**ft_edit_tab(int i, t_gen *g);
 void				ft_free_tab(char **tab);
+int					ft_win_2(t_gen *g);
 #endif

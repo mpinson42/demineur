@@ -47,12 +47,12 @@ void	ft_drap(t_gen *g)
 		g->drap[g->clic_x][g->clic_y] = '!';
 }
 
-
 void	ft_free_tab(char **tab)
 {
 	int i;
+
 	i = 0;
-	while(tab[i] != NULL)
+	while (tab[i] != NULL)
 	{
 		free(tab[i]);
 		i++;
