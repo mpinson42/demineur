@@ -48,14 +48,15 @@ void	ft_rand(t_gen *g)
 	g->bmb = bmb;
 	srand(time(NULL));
 	ft_init_clic(g);
-	i = -1;
-	while (++i < bmb)
+	i = 0;
+	while (i < bmb)
 	{
 		x = rand() % g->x + 0;
 		y = rand() % g->x + 0;
 		if (g->map_min[x][y] == 'X' || g->map[x][y] == 'L')
 			continue ;
 		g->map_min[x][y] = 'X';
+		i++;
 	}
 }
 
