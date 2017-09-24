@@ -74,7 +74,8 @@ int		main(int argc, char **argv)
 	t_gen g;
 
 	ft_bzero(&g, sizeof(g));
-	ft_init(&g, argc, argv);
+	if (ft_init(&g, argc, argv) == -1)
+		return (-1);
 	g.argv = argv;
 	g.argc = argc;
 	system("afplay musique/sao.mp3 &");
